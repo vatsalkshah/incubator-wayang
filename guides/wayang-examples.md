@@ -22,6 +22,7 @@ This page contains examples to be executed using Wayang.
   * [Scala API](#scala-api)
 - [k-means](#k-means)
   * [Scala API](#scala-api-1)
+- [XGBoost Example with Apache Wayang](#xgboost-example-with-apache-wayang)
 
 ## WordCount
 
@@ -235,3 +236,19 @@ object kmeans {
   }
 }
 ```
+
+## XGBoost Example with Apache Wayang
+
+This tutorial will guide you on how to perform XGBoost using Apache Wayang and the XGBoost library.
+
+### The Script
+
+The Python script for this task is `xgboost_example.py`. This script reads input data from a text file, where each line contains a list of comma-separated numbers. The last number in each line is the target value, and the rest are the features. The script then performs XGBoost on these data points.
+
+The script uses Apache Wayang to read the data and the XGBoost library to perform the XGBoost task. It can be run on different platforms supported by Apache Wayang, such as Apache Spark or Java Streams.
+
+### Running the Script
+
+To run the script, you need to have Apache Wayang and its Python API installed. You also need to have the XGBoost library installed. You also need to have the platform you want to run the script on installed and properly configured.
+
+Once everything is set up, you can run the script using the following command:
