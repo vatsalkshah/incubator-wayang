@@ -32,13 +32,35 @@ class TranslateContext:
 
 
 class Plugin:
-    """ TODO: enrich this documentation
-    A plugin contributes the following components to a :class:`Context`
-    - mappings
-    - channels
-    - configurations
-    In turn, it may require several :clas:`Platform`s for its operation.
     """
+        A plugin contributes the following components to a :class:`Context`
+        - mappings
+        - channels
+        - configurations
+        In turn, it may require several :clas:`Platform`s for its operation.
+
+        Attributes
+        ----------
+        platforms : Set[Platform]
+            The set of platforms that the plugin can operate on.
+        mappings : Mapping
+            The mapping that the plugin uses to map tasks to platforms.
+        translate_context : TranslateContext
+            The context used for translation.
+
+        Methods
+        -------
+        __init__(self, platforms: Set[Platform], mappings: Mapping = Mapping(), translate_context: TranslateContext = None)
+            Initializes the Plugin with the given platforms, mappings, and translate context.
+        get_mappings(self) -> Mapping
+            Returns the mappings of the plugin.
+        get_executor(self) -> Executor
+            Returns the executor of the plugin. This method is not implemented.
+        __str__(self)
+            Returns a string representation of the Plugin instance.
+        __repr__(self)
+            Returns a string representation of the Plugin instance.
+        """
 
     platforms: Set[Platform]
     mappings: Mapping
