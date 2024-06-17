@@ -38,11 +38,11 @@ import scala.reflect._
 /**
   * Utility to build [[WayangPlan]]s.
   */
-class PlanBuilder(wayangContext: WayangContext, private var jobName: String = null) {
+class PlanBuilder(private[api] val wayangContext: WayangContext, private var jobName: String = null) {
 
   private[api] val sinks = ListBuffer[Operator]()
 
-  private val udfJars = scala.collection.mutable.Set[String]()
+  private[api] val udfJars = scala.collection.mutable.Set[String]()
 
   private var experiment: Experiment = _
 
@@ -104,6 +104,14 @@ class PlanBuilder(wayangContext: WayangContext, private var jobName: String = nu
     val plan: WayangPlan = new WayangPlan(this.sinks.toArray: _*)
     if (this.experiment == null) this.wayangContext.execute(jobName, plan, this.udfJars.toArray: _*)
     else this.wayangContext.execute(jobName, plan, this.experiment, this.udfJars.toArray: _*)
+  }
+
+  /**
+    * Build the [[org.apache.wayang.core.api.Job]] and explain it.
+    */
+  def buildAndExplain(): Unit = {
+    val plan: WayangPlan = new WayangPlan(this.sinks.toArray: _*)
+    this.wayangContext.explain(plan, this.udfJars.toArray: _*)
   }
 
   /**
